@@ -243,9 +243,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2115895776}
+  - {fileID: 1660970325}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &555004648
 MonoBehaviour:
@@ -264,6 +266,7 @@ MonoBehaviour:
   _endPoint: {fileID: 1660970325}
   _redBallPrefab: {fileID: 4264594814535304539, guid: da3e152752b7549ea81d90c88e94a28c, type: 3}
   _whiteBallPrefab: {fileID: 1063470668878293331, guid: 4d7d11fccc61c44e49b308804f8fb753, type: 3}
+  _ballMoveSpeed: 0
 --- !u!1 &1217257828
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1660970325}
   m_Layer: 0
-  m_Name: RedBall
+  m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,12 +435,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660970322}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -3.48}
   m_LocalScale: {x: 0.32708, y: 0.32708, z: 0.32708}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 555004647}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1774068540
 GameObject:
@@ -647,7 +650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2115895776}
   m_Layer: 0
-  m_Name: WhiteBall
+  m_Name: StartPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,10 +663,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115895773}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 3.25}
   m_LocalScale: {x: 0.32708, y: 0.32708, z: 0.32708}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 555004647}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
