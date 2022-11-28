@@ -11,7 +11,7 @@ public class MusicManager : MonoBehaviour
 
     #region 对外接口
     [field: SerializeField] public UnityEvent<int> MusicPlaySample { get; private set; } = new UnityEvent<int>();
-    // public int SampleRate { get; private set; }
+    public int SampleRate { get; private set; }
     public MusicPiece.RhythmSample[] RhythmSamples => _musicPiece.rhythmSamples;
     public int TotalSamples { get; private set; }
     #endregion
@@ -19,13 +19,15 @@ public class MusicManager : MonoBehaviour
     #region 类的属性
     private double _startTime;
     private double _sampleRate;
+    private int _lastSample = -1;
+    private int _curSample = -1;
     #endregion
 
     private void Awake()
     {
         _audioSource.clip = _musicPiece.audioClip;
         _sampleRate = AudioSettings.outputSampleRate;
-        // SampleRate = Mathf.RoundToInt((float)_sampleRate);
+        SampleRate = Mathf.RoundToInt((float)_sampleRate);
         float totalSeconds = _musicPiece.audioClip.length;
         TotalSamples = Mathf.CeilToInt((float)(totalSeconds * _sampleRate));
     }
@@ -37,6 +39,14 @@ public class MusicManager : MonoBehaviour
         _audioSource.PlayScheduled(_startTime);
     }
 
+    private void Update()
+    {
+        if (_curSample != _lastSample)
+        {
+            MusicPlaySample.Invoke(_lastSample = _curSample);
+        }
+    }
+
     private void OnAudioFilterRead(float[] data, int channels)
     {
         double sampleD = (AudioSettings.dspTime - _startTime) * _sampleRate;
@@ -46,7 +56,8 @@ public class MusicManager : MonoBehaviour
         }
 
         int sample = Mathf.RoundToInt((float)(sampleD % TotalSamples));
-        MusicPlaySample.Invoke(sample);
-        Debug.Log(sample / _sampleRate);
+        // MusicPlaySample.Invoke(sample);
+        _curSample = sample;
+        // Debug.Log(sample / _sampleRate);
     }
 }
