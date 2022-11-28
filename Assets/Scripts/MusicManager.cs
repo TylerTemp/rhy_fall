@@ -11,23 +11,23 @@ public class MusicManager : MonoBehaviour
 
     #region 对外接口
     [field: SerializeField] public UnityEvent<int> MusicPlaySample { get; private set; } = new UnityEvent<int>();
-    public int SampleRate { get; private set; }
+    // public int SampleRate { get; private set; }
     public MusicPiece.RhythmSample[] RhythmSamples => _musicPiece.rhythmSamples;
+    public int TotalSamples { get; private set; }
     #endregion
 
     #region 类的属性
     private double _startTime;
     private double _sampleRate;
-    private int _totalSamples;
     #endregion
 
     private void Awake()
     {
         _audioSource.clip = _musicPiece.audioClip;
         _sampleRate = AudioSettings.outputSampleRate;
-        SampleRate = Mathf.RoundToInt((float)_sampleRate);
+        // SampleRate = Mathf.RoundToInt((float)_sampleRate);
         float totalSeconds = _musicPiece.audioClip.length;
-        _totalSamples = Mathf.CeilToInt((float)(totalSeconds * _sampleRate));
+        TotalSamples = Mathf.CeilToInt((float)(totalSeconds * _sampleRate));
     }
 
     private void Start()
@@ -45,7 +45,7 @@ public class MusicManager : MonoBehaviour
             return;
         }
 
-        int sample = Mathf.RoundToInt((float)(sampleD % _totalSamples));
+        int sample = Mathf.RoundToInt((float)(sampleD % TotalSamples));
         MusicPlaySample.Invoke(sample);
         Debug.Log(sample / _sampleRate);
     }

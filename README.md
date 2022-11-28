@@ -65,14 +65,15 @@
 
 ### 4. 下落式音游（可选） ###
 
-clone 本项目。请注意，本项目使用了 `git` 的 `lfs` 能力。
+clone 本项目。请注意，本项目使用了 `git` 的 `lfs` 能力。你应该使用 `git`，本题目包含了对 `git` 能力的考查。注意：本项目中的音频文件 **没有** 损坏。
 
 项目说明：
 
 1.  `RawResources/Balls` 下面有红白两个球作为素材。
-2.  播放游戏时，`MusicManager` 将播放音乐并不断更新音乐帧时间（Sample）。你应该认为这个时间是精确的。
+2.  播放游戏时，`MusicManager.MusicPlaySample` 将播放音乐并不断更新音乐帧时间（Sample）。你应该认为这个时间是精确的。
 3.  游戏场景有标注“球的生成点”和“球的结束点”。如果看不到，请打开 Gizmos。
 4.  音乐有4拍，3拍轻，1拍重。`MusicManager.MusicPiece.RhythmSample` 属性标注了4个节拍的时间（`sample`）和类型（`isMain`）。
+5.  `MusicManager.TotalSamples` 是这首歌的总的Sample数
 
 题目说明：
 
